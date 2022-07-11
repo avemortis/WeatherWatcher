@@ -13,7 +13,8 @@ class WeatherWeekOverviewAdapter(
         parent: ViewGroup,
         viewType: Int
     ): WeatherWeekOverviewViewHolder {
-        val bind = HolderWeatherWeekItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val bind =
+            HolderWeatherWeekItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return WeatherWeekOverviewViewHolder(bind)
     }
 
@@ -24,7 +25,8 @@ class WeatherWeekOverviewAdapter(
     override fun getItemCount() = size
 }
 
-class WeatherWeekOverviewViewHolder(binding: HolderWeatherWeekItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class WeatherWeekOverviewViewHolder(binding: HolderWeatherWeekItemBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     val weekDayTextView = binding.holderWeatherWeekDayLabel
     val temperatureTextView = binding.holderWeatherWeekTemperature
     val monthDayNumber = binding.holderWeatherWeekDayNumber

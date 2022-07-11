@@ -11,14 +11,15 @@ import android.view.ViewGroup
 import com.weather.data.network.WeatherClient
 import com.weather.data.network.WeatherService
 import com.weather.databinding.FragmentWeatherWatchBinding
+import com.weather.di.WeatherScope
 import com.weather.ui.recyclerview.WeatherWeekOverviewAdapter
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class WeatherWatchFragment(
-    val location: Location,
-    val service: WeatherClient
+    private val location: Location,
+    private val service: WeatherClient
 ) : Fragment() {
     private lateinit var viewModel: WeatherWatchViewModel
     private lateinit var bind: FragmentWeatherWatchBinding
@@ -37,15 +38,15 @@ class WeatherWatchFragment(
         service.getWeather(location.latitude.toFloat(), location.longitude.toFloat())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .subscribe { t1, _ ->
+            .subscribe { weather, _ ->
                 bind.weatherWeekOverviewComponent.list?.adapter = WeatherWeekOverviewAdapter(
-                    t1.daily.size,
+                    weather.daily.size,
                     onBind = { holder, position ->
                         holder.weekDayTextView.text = position.toString()
-                        holder.temperatureTextView.text = t1.daily[position].temp.day.toString()
+                        holder.temperatureTextView.text = weather.daily[position].temp.day.toString()
                     }
                 )
-                bind.weatherDayOverviewComponent.topTextView.text = t1.timezone
+                bind.weatherDayOverviewComponent.topTextView.text = weather.timezone
             }
     }
 }

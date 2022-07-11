@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_gps_permission" >
         <action
             android:id="@+id/action_gpsPermissionFragment_to_weatherWatchFragment"
-            app:destination="@id/weatherWatchFragment" />
+            app:destination="@id/weatherWatchFragment"
+            app:popUpTo="@id/gpsPermissionFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/weatherWatchFragment"

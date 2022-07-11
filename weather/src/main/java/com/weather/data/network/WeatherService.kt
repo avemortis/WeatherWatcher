@@ -15,7 +15,7 @@ class WeatherService @Inject constructor() {
 
     val service = retrofit.create<WeatherClient>()
 
-    companion object {
+    private companion object {
         private const val WEATHER_BASE_URL = "https://api.openweathermap.org/"
     }
 }

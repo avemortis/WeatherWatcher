@@ -8,4 +8,5 @@ import dagger.Component
 @Component(modules = [WeatherServiceModule::class])
 interface WeatherComponent {
     fun getWeatherService(): WeatherService
+    fun getFragmentFactory(): WeatherFragmentFactory
 }

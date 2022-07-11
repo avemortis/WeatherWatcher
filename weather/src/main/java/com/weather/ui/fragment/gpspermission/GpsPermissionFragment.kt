@@ -12,33 +12,31 @@ import androidx.navigation.fragment.findNavController
 import com.weather.R
 import com.weather.databinding.FragmentGpsPermissionBinding
 import com.weather.di.DaggerWeatherComponent
+import com.weather.di.WeatherServiceModule
 import com.weather.utils.WeatherFragmentFactory
 import com.weather.utils.getGpsPermissionActivityLauncher
 import com.weather.utils.launchGpsPermissionAsk
 import com.weather.utils.toGpsSettingsIntent
 
 class GpsPermissionFragment : Fragment() {
-    private lateinit var viewModel: GpsPermissionViewModel
+    private val builder = DaggerWeatherComponent.builder()
     private lateinit var bind: FragmentGpsPermissionBinding
-    private lateinit var gpsActivityListener: ActivityResultLauncher<Array<String>>
-    private val builder = DaggerWeatherComponent.builder().build()
+    private val gpsActivityListener =
+        getGpsPermissionActivityLauncher({ goToWeatherWatchingFragment(it) },
+            { setLoadingState()},
+            { setEnableGpsState() },
+            { setAskPermissionAgainState() })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         bind = FragmentGpsPermissionBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[GpsPermissionViewModel::class.java]
         getLocation()
         return bind.root
     }
 
     private fun getLocation() {
-        gpsActivityListener =
-            getGpsPermissionActivityLauncher({ setLocationToShowState(it) },
-                { setLoadingState()},
-                { setEnableGpsState() },
-                { setAskPermissionAgainState() })
         launchGpsPermissionAsk(gpsActivityListener)
     }
 
@@ -48,12 +46,10 @@ class GpsPermissionFragment : Fragment() {
         bind.gpsPermissionProgress.visibility = View.VISIBLE
     }
 
-    private fun setLocationToShowState(location: Location) {
-        requireActivity().supportFragmentManager.fragmentFactory = WeatherFragmentFactory(builder.getWeatherService(), location)
+    private fun goToWeatherWatchingFragment(location: Location) {
+        val component = builder.weatherServiceModule(WeatherServiceModule(location)).build()
+        requireActivity().supportFragmentManager.fragmentFactory = component.getFragmentFactory()
         findNavController().navigate(GpsPermissionFragmentDirections.actionGpsPermissionFragmentToWeatherWatchFragment())
-        hideButtons()
-        bind.gpsPermissionProgress.visibility = View.INVISIBLE
-        setText(location.toString())
     }
 
     private fun setEnableGpsState() {
