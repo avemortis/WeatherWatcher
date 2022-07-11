@@ -10,8 +10,8 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.navigation.fragment.findNavController
 import com.weather.R
-import com.weather.data.network.WeatherService
 import com.weather.databinding.FragmentGpsPermissionBinding
+import com.weather.di.DaggerWeatherComponent
 import com.weather.utils.WeatherFragmentFactory
 import com.weather.utils.getGpsPermissionActivityLauncher
 import com.weather.utils.launchGpsPermissionAsk
@@ -21,6 +21,7 @@ class GpsPermissionFragment : Fragment() {
     private lateinit var viewModel: GpsPermissionViewModel
     private lateinit var bind: FragmentGpsPermissionBinding
     private lateinit var gpsActivityListener: ActivityResultLauncher<Array<String>>
+    private val builder = DaggerWeatherComponent.builder().build()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,8 +49,7 @@ class GpsPermissionFragment : Fragment() {
     }
 
     private fun setLocationToShowState(location: Location) {
-        val service = WeatherService()
-        parentFragmentManager.fragmentFactory = WeatherFragmentFactory(service, location)
+        requireActivity().supportFragmentManager.fragmentFactory = WeatherFragmentFactory(builder.getWeatherService(), location)
         findNavController().navigate(GpsPermissionFragmentDirections.actionGpsPermissionFragmentToWeatherWatchFragment())
         hideButtons()
         bind.gpsPermissionProgress.visibility = View.INVISIBLE
