@@ -21,9 +21,10 @@ import com.weather.utils.toGpsSettingsIntent
 class GpsPermissionFragment : Fragment() {
     private val builder = DaggerWeatherComponent.builder()
     private lateinit var bind: FragmentGpsPermissionBinding
+
     private val gpsActivityListener =
         getGpsPermissionActivityLauncher({ goToWeatherWatchingFragment(it) },
-            { setLoadingState()},
+            { setLoadingState() },
             { setEnableGpsState() },
             { setAskPermissionAgainState() })
 

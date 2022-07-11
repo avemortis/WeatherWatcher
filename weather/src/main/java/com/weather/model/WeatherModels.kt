@@ -2,7 +2,7 @@ package com.weather.model
 
 import com.google.gson.annotations.SerializedName
 
-data class CompleteWeatherModel(
+data class WeatherCompleteModel(
     @SerializedName("timezone") val timezone: String,
     @SerializedName("current") val current: CurrentWeatherModel,
     @SerializedName("daily") val daily: List<WeatherByDay>
