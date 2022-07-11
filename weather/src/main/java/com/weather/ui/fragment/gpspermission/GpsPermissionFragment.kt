@@ -8,9 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
+import androidx.navigation.fragment.findNavController
+import com.weather.R
+import com.weather.data.network.WeatherService
 import com.weather.databinding.FragmentGpsPermissionBinding
+import com.weather.utils.WeatherFragmentFactory
 import com.weather.utils.getGpsPermissionActivityLauncher
-import com.weather.utils.launchPermissionAsk
+import com.weather.utils.launchGpsPermissionAsk
 import com.weather.utils.toGpsSettingsIntent
 
 class GpsPermissionFragment : Fragment() {
@@ -34,7 +38,7 @@ class GpsPermissionFragment : Fragment() {
                 { setLoadingState()},
                 { setEnableGpsState() },
                 { setAskPermissionAgainState() })
-        launchPermissionAsk(gpsActivityListener)
+        launchGpsPermissionAsk(gpsActivityListener)
     }
 
     private fun setLoadingState() {
@@ -44,32 +48,35 @@ class GpsPermissionFragment : Fragment() {
     }
 
     private fun setLocationToShowState(location: Location) {
+        val service = WeatherService()
+        parentFragmentManager.fragmentFactory = WeatherFragmentFactory(service, location)
+        findNavController().navigate(GpsPermissionFragmentDirections.actionGpsPermissionFragmentToWeatherWatchFragment())
         hideButtons()
-        bind.gpsPermissionRetry.visibility = View.INVISIBLE
+        bind.gpsPermissionProgress.visibility = View.INVISIBLE
         setText(location.toString())
     }
 
     private fun setEnableGpsState() {
         bind.gpsPermissionProgress.visibility = View.INVISIBLE
-        setText("GPS is switch off right now. Please turn it on to watch weather")
+        setText(getString(R.string.gps_off))
         bind.gpsPermissionButtomButton.visibility = View.VISIBLE
-        bind.gpsPermissionButtomButton.text = "Turn GPS on"
+        bind.gpsPermissionButtomButton.text = getString(R.string.turn_on_gps)
         bind.gpsPermissionButtomButton.setOnClickListener {
             toGpsSettingsIntent()
         }
         bind.gpsPermissionRetry.visibility = View.VISIBLE
         bind.gpsPermissionRetry.setOnClickListener {
-            launchPermissionAsk(gpsActivityListener)
+            launchGpsPermissionAsk(gpsActivityListener)
         }
     }
 
     private fun setAskPermissionAgainState() {
         bind.gpsPermissionProgress.visibility = View.INVISIBLE
-        setText("GPS permission was not granted. Application can't show weather without location information. Please, give permission to watch weather")
+        setText(getString(R.string.gps_permission_not_granted))
         bind.gpsPermissionButtomButton.visibility = View.VISIBLE
-        bind.gpsPermissionButtomButton.text = "Give permission"
+        bind.gpsPermissionButtomButton.text = getString(R.string.give_permission)
         bind.gpsPermissionButtomButton.setOnClickListener {
-            launchPermissionAsk(gpsActivityListener)
+            launchGpsPermissionAsk(gpsActivityListener)
         }
     }
 

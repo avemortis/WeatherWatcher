@@ -3,11 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/weather_graph"
-    app:startDestination="@id/currentWeatherFragment">
+    app:startDestination="@id/gpsPermissionFragment">
 
     <fragment
-        android:id="@+id/currentWeatherFragment"
+        android:id="@+id/gpsPermissionFragment"
         android:name="com.weather.ui.fragment.gpspermission.GpsPermissionFragment"
         android:label="fragment_current_weather"
-        tools:layout="@layout/fragment_gps_permission" />
+        tools:layout="@layout/fragment_gps_permission" >
+        <action
+            android:id="@+id/action_gpsPermissionFragment_to_weatherWatchFragment"
+            app:destination="@id/weatherWatchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weatherWatchFragment"
+        android:name="com.weather.ui.fragment.weatherwatch.WeatherWatchFragment"
+        android:label="fragment_weather_watch"
+        tools:layout="@layout/fragment_weather_watch" />
 </navigation>

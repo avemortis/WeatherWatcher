@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="gps_off">GPS is disabled. Please turn it on to watch weather. If geolocation is already enabled on your device, please click the "refresh" button</string>
+    <string name="gps_permission_not_granted">GPS permission was not granted. Application cannot show weather without location information. Please, give permission to watch weather</string>
+    <string name="give_permission">Give permission</string>
+    <string name="turn_on_gps">Turn GPS on</string>
+</resources>

@@ -49,7 +49,7 @@ fun Fragment.getGpsPermissionActivityLauncher(
     }
 }
 
-fun launchPermissionAsk(
+fun launchGpsPermissionAsk(
     locationPermissionRequest: ActivityResultLauncher<Array<String>>
 ) {
     locationPermissionRequest.launch(

@@ -5,10 +5,13 @@
       <map>
         <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/app/src/main/res/layout/activity_main.xml" value="0.25317028985507245" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/app/src/main/res/layout/fragment_blank.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/weather/src/main/res/layout/component_weather_day_overview.xml" value="0.23641304347826086" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/weather/src/main/res/layout/component_weather_week_overview.xml" value="0.1276283618581907" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/weather/src/main/res/layout/fragment_current_weather.xml" value="0.21240942028985507" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/weather/src/main/res/layout/fragment_gps_permission.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/weather/src/main/res/layout/fragment_gps_permisson.xml" value="0.266304347826087" />
         <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/weather/src/main/res/layout/fragment_weather_watch.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/adara/AndroidStudioProjects/WeatherWatcher/weather/src/main/res/layout/holder_weather_week_item.xml" value="0.365625" />
       </map>
     </option>
   </component>
