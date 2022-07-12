@@ -9,6 +9,7 @@ data class WeatherCompleteModel(
 )
 
 data class WeatherByDay(
+    @SerializedName("dt") val dt: Long,
     @SerializedName("temp") val temp: TemperatureAccurate,
     @SerializedName("feels_like") val feelsLike: TemperatureFeelsLike
 )

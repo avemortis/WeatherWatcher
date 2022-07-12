@@ -5,6 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:theme="@style/MainTitleText"
         android:id="@+id/weather_day_overview_top_textview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:theme="@style/SecondTitleText"
         android:id="@+id/weather_day_overview_bottom_textview"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

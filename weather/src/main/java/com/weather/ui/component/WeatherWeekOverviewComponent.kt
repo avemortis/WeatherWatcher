@@ -25,5 +25,6 @@ class WeatherWeekOverviewComponent @JvmOverloads constructor(
         )
     val list : RecyclerView? = view.findViewById<RecyclerView?>(R.id.weather_week_overview_recyclerview).apply {
         layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        scrollState
     }
 }

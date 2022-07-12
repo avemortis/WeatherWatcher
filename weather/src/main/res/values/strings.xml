@@ -4,4 +4,5 @@
     <string name="gps_permission_not_granted">GPS permission was not granted. Application cannot show weather without location information. Please, give permission to watch weather</string>
     <string name="give_permission">Give permission</string>
     <string name="turn_on_gps">Turn GPS on</string>
+    <string name="feels_like">Feels like %s</string>
 </resources>

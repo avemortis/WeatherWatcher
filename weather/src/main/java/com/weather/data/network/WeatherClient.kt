@@ -10,6 +10,8 @@ interface WeatherClient {
     fun getWeather(
         @Query("lat") lat: Float,
         @Query("lon") lon: Float,
+        @Query("units") units: String = "metric",
+        @Query("lang") language: String = "ru",
         @Query("appid") appid: String = "d3783d35cd85c8185743026665074d77"
     ): Single<WeatherCompleteModel>
 }
