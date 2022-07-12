@@ -46,6 +46,7 @@ class WeatherWatchFragment(
     }
 
     private fun setWeather(weather: WeatherCompleteModel) {
+        bind.weatherWeekProgressbar.visibility = View.INVISIBLE
         bind.weatherWeekOverviewComponent.list?.adapter = WeatherWeekOverviewAdapter(
             weather.daily.size,
             onBind = { holder, position ->

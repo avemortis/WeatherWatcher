@@ -6,8 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.weatherwatch.WeatherWatchFragment">
 
+    <ProgressBar
+        android:id="@+id/weather_week_progressbar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.weather.ui.component.WeatherDayOverviewComponent
-        android:id="@+id/weatherDayOverviewComponent"
+        android:id="@+id/weather_day_overview_component"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,5 +31,5 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weatherDayOverviewComponent" />
+        app:layout_constraintTop_toBottomOf="@+id/weather_day_overview_component" />
 </androidx.constraintlayout.widget.ConstraintLayout>
